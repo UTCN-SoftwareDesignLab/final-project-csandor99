@@ -11,7 +11,6 @@ import static com.example.demo.Constants.*;
 public class MessageSMSService {
     public void send(MessageSMS sms) {
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-        Message message = Message.creator(new PhoneNumber(sms.getReceiver()), new PhoneNumber(FROM_NUMBER), sms.getMessage())
-                .create();
+        Message message = Message.creator(new PhoneNumber(sms.getReceiver()), new PhoneNumber(FROM_NUMBER), sms.getMessage()).create();
     }
 }

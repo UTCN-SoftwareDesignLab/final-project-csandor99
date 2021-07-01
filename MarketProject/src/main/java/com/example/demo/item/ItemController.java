@@ -56,11 +56,10 @@ public class ItemController {
 
     @GetMapping(EXPORT_REPORT)
     public ResponseEntity<?> exportReport(@PathVariable ReportType type) {
-
-        ByteArrayOutputStream bodyOutput = reportServiceFactory.getReportService(type).export();
-        ByteArrayResource byteArrayResource = new ByteArrayResource(bodyOutput.toByteArray());
-
         HttpHeaders headers = new HttpHeaders();
+
+        ByteArrayOutputStream outputStream = reportServiceFactory.getReportService(type).export();
+        ByteArrayResource byteArrayResource = new ByteArrayResource(outputStream.toByteArray());
         headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=OutOfStockItems.pdf");
 
         return ResponseEntity.ok()
